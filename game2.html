@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Main Page of the Game</title>
+<link href="timer.css" rel="stylesheet">
+	
+
+<script>
+  var counter = {};
+window.addEventListener("load", function () {
+  // COUNTDOWN IN SECONDS
+  // EXAMPLE - 5 MINS = 5 X 60 = 300 SECS
+  counter.end = 180;
+
+  // Get the containers
+  counter.min = document.getElementById("cd-min");
+  counter.sec = document.getElementById("cd-sec");
+
+  // Start if not past end date 
+  if (counter.end > 0) {
+    counter.ticker = setInterval(function(){
+      // Stop if passed end time
+      counter.end--;
+      if (counter.end <= 0) { 
+        clearInterval(counter.ticker); 
+        document.body.style.color='aqua';
+        document.write("<h1><center>Oops!! Time Up...The word is "+w+"<br>"+"You lost!!</center></h1>");
+        counter.end = 0;
+      }
+
+      // Calculate remaining time
+      var secs = counter.end;
+      var mins  = Math.floor(secs / 60); // 1 min = 60 secs
+      secs -= mins * 60;
+
+      // Update HTML
+      counter.min.innerHTML = mins;
+      counter.sec.innerHTML = secs;
+    }, 1000);
+  }
+});
+
+var x,w;
+var   A=["heart","equal","spoon","power","gmail","apple","grass","candy","water","zebra","shine","smoke","first","night","bless","basic",
+                     "yahoo","check","print","class","style","greek","juice","great","crazy","pizza","order","cheap","glaze","drink",
+                     "today","brave","focus","royal","glass","never","dream","glory","world","value","style","point","match","watch",                      "video","smile","angry","reply","dizzy","field","index","curve","orkut","viber","pepsi","sleep","actor","acute","arise","blood","black","catch","chair","chain",
+                      "group","dream","eight","frame","guest","hotel","index","image","joint","lucky","magic","music","metal","radio",
+                      "prime","sharp","space","smoke","stage","teach","unity","virus","value","woman","young","youth","wheel",
+                     "ozone","unity","study","sweet","story","sense","solid","prize","plaza","panel","phone","music","movie","laser",
+                      "frame"];
+x = Math.floor((Math.random() * 100) + 1);
+w=A[x];
+
+var d=0,m=0;
+function revent()
+{
+
+d=d+1;
+if(d<4)
+{
+document.getElementById("s").innerHTML+="Your chance No "+d+"\n";
+var v=document.getElementById("t2").value;
+var p=v;
+document.getElementById("s3").innerHTML+=p;
+
+    var c=0,i,j;
+	for(var i=0;i<5;i++)
+	{
+	  for(var j=0;j<5;j++)
+	   {
+	    	 
+	       if(w.charAt(i) == v.charAt(j))
+	       {
+         	c=c+1;
+		document.getElementById("s").innerHTML+="Characters matched are:"+v.charAt(j)+"\n";
+                m=m+1
+                 if(c==5||m==5)
+                  {
+                    document.getElementById("s").innerHTML+="All characters matched!! now guess the word";
+                    }
+
+                }
+				
+	    }
+	 }
+ } 
+ else 
+ document.getElementById("s").innerHTML+="Your Chances are Over.Now Guess the word\n";
+ 
+if(c==0)
+document.getElementById("s").innerHTML+="No Characters matched\n";
+if(m!==5&&d==3)
+document.getElementById("s").innerHTML+="Your Chances are Over.Now Guess the word";
+		  
+}
+
+function result()
+{
+ var l= document.getElementById("t3").value;
+ if (l == w)
+    window.location="file:///Users/sravanthimalepati/Desktop/Web/web_project_1/congrats.html";
+else
+{
+document.body.style.color='aqua';
+document.write("<h1><center>Oops!! The word is "+w+"<br>"+"You lost!!</center></h1>");
+}
+}
+
+</script>
+</head>
+
+<body>
+<audio  autoplay>
+<source src="best.mp3" type="audio/mp3" >
+<source src="best.ogg" type="audio/ogg">
+</audio> 
+<center>
+  <div class="countdown">
+      <h1 class="header">Your Game Ends in..</h1>
+      <div class="square">
+        <div class="digits" id="cd-min">00</div>
+        <div class="text">MINUTES</div>
+      </div>
+      <div class="square">
+        <div class="digits" id="cd-sec">00</div>
+        <div class="text">SECONDS</div>
+      </div>
+    </div>
+
+
+<form id="f1" action="start.html">
+
+Enter your characters:<input type="text" id="t2" maxlength="5"/>
+
+<input type="button" id="s1" value="submit"  onclick="revent()"><br><br>
+So far your characters :<textarea id="s3" rows=2 cols=30></textarea><br><br>
+
+Try your luck now:<input type="text" id="t3" maxlength="5"/>
+
+<input type="button" id="s1" value="Guess" onclick="result()"/><br><br>
+ 
+<textarea id="s" rows=15 cols=50></textarea><br>
+<center><button type="submit"> Restart Game </button></a></center>
+<center>
+
+</center>
+</form>
+<center><br>
+<a href ="rules.html"><button> Wanna refer to rules again then click hereeee.... </button></a></center>
+</body>
+</html>
